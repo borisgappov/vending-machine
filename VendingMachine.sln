@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Web
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "VendingMachine", "http://localhost:54278", "{CE5CD733-E28B-4D0F-8EB1-C0BA5B034BC3}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = "{a6c3c289-e0c6-43a9-b731-4e77c5d864c2}|VendingMachineCore.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_54278"
+		Debug.AspNetCompiler.PhysicalPath = "VendingMachine\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54278\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_54278"
+		Release.AspNetCompiler.PhysicalPath = "VendingMachine\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54278\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "VendingMachine\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VendingMachineCore", "VendingMachineCore\VendingMachineCore.csproj", "{A6C3C289-E0C6-43A9-B731-4E77C5D864C2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE5CD733-E28B-4D0F-8EB1-C0BA5B034BC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE5CD733-E28B-4D0F-8EB1-C0BA5B034BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE5CD733-E28B-4D0F-8EB1-C0BA5B034BC3}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE5CD733-E28B-4D0F-8EB1-C0BA5B034BC3}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{A6C3C289-E0C6-43A9-B731-4E77C5D864C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6C3C289-E0C6-43A9-B731-4E77C5D864C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6C3C289-E0C6-43A9-B731-4E77C5D864C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6C3C289-E0C6-43A9-B731-4E77C5D864C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
