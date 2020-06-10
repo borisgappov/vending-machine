@@ -1,38 +1,36 @@
 ﻿//---------------------------------------------------------------------------//
-//Разработчик: Гаппов Борис, gappov@gmail.com, +79262302992                  //
-//Москва, 26.09.2014                                                         //
+// Developer: Boris Gappov, gappov@gmail.com, +79262302992                   //
+// Moscow, 09/26/2014                                                        //
 //---------------------------------------------------------------------------//
+
 using System.Collections.Generic;
 using System.Linq;
 
 namespace VendingMachineCore
 {
     /// <summary>
-    /// Приемник (хранилище) монет
+    ///     Receiver (vault) of coins
     /// </summary>
     public class CoinAcceptor
     {
         /// <summary>
-        /// Монеты
+        ///     Coins
         /// </summary>
         public List<Money> Coins = new List<Money>();
 
         /// <summary>
-        /// Хранимая сумма денег
+        ///     Stored Amount
         /// </summary>
         public int Total
         {
-            get
-            {
-                return Coins.Sum(x => x.Amount);
-            }
+            get { return Coins.Sum(x => x.Amount); }
         }
 
         /// <summary>
-        /// Добавляет одну монету в хранилище
+        ///     Adds one coin to the vault
         /// </summary>
-        /// <param name="Value">Достоинство монеты</param>
-        /// <param name="Count">Количество монет</param>
+        /// <param name="Value">Coin value</param>
+        /// <param name="Count">Number of coins</param>
         public void Push(int Value, int Count)
         {
             var moneyByValue = Coins.Where(x => x.CoinValue == Value).FirstOrDefault();
@@ -47,7 +45,7 @@ namespace VendingMachineCore
         }
 
         /// <summary>
-        /// Добавляет несколько монет одного достоинства в хранилище 
+        ///     Adds multiple coins of the same denomination to the vault
         /// </summary>
         /// <param name="Incomming"></param>
         public void Push(Money Incomming)
@@ -56,7 +54,7 @@ namespace VendingMachineCore
         }
 
         /// <summary>
-        /// Добавляет монеты разного достоинства в хранилище
+        ///     Adds coins of various denominations to the vault
         /// </summary>
         /// <param name="Incomming"></param>
         public void Push(Money[] Incomming)
@@ -65,16 +63,15 @@ namespace VendingMachineCore
         }
 
         /// <summary>
-        /// Извлекает заданную сумму из хранилища, выдаются комбинацией монет максимального достоинства
-        /// Если монет недостаточно для формиования нужной суммы, возвращается пустой массив
+        ///     Retrieves the specified amount from the vault, issued a combination of coins of maximum denomination
+        ///     If there are not enough coins to form the desired amount, an empty array is returned
         /// </summary>
-        /// <param name="Sum">Сумма для извлечения</param>
-        /// <returns>Набор (массив) разного достоинства</returns>
+        /// <param name="Sum">Amount to Extract</param>
+        /// <returns>A set (array) of different denominations</returns>
         public Money[] Get(int Sum)
         {
             var result = new List<Money>();
             if (Sum <= Coins.Sum(x => x.Amount))
-            {
                 if (IsCoinsEnough(Sum))
                 {
                     var remainder = Sum;
@@ -89,19 +86,19 @@ namespace VendingMachineCore
                             Amount = coins * moneyByValue.CoinValue,
                             CoinValue = moneyByValue.CoinValue
                         });
-                        remainder = remainder % ( moneyByValue.CoinValue * coins );
+                        remainder = remainder % (moneyByValue.CoinValue * coins);
                         if (remainder == 0) break;
                     }
                 }
-            }
+
             return result.ToArray();
         }
 
         /// <summary>
-        /// Определяет, возможно ли выдать требуемую сумму оставшимся набором монет
+        ///     Determines whether it is possible to issue the required amount with the remaining set of coins.
         /// </summary>
-        /// <param name="Sum">Требуемая сумма</param>
-        /// <returns>истина, если монет хватает</returns>
+        /// <param name="Sum">Amount Required</param>
+        /// <returns>true if there are enough coins</returns>
         public bool IsCoinsEnough(int Sum)
         {
             var CheckSum = 0;
@@ -115,14 +112,15 @@ namespace VendingMachineCore
                 remainder = remainder % (moneyByValue.CoinValue * coins);
                 if (remainder == 0) break;
             }
+
             return CheckSum == Sum;
         }
 
         /// <summary>
-        /// Определяет, возможно ли выдать монету требуемого достоинства
+        ///     Determines whether it is possible to issue a coin of the required value.
         /// </summary>
-        /// <param name="CoinValue">Достоинство требемой монеты</param>
-        /// <returns>истина, если монета есть</returns>
+        /// <param name="CoinValue">Dignity of the required coin</param>
+        /// <returns>true if there is a coin</returns>
         public bool IsCoinExists(int CoinValue)
         {
             var coins = Coins.Where(x => x.CoinValue == CoinValue).FirstOrDefault();
@@ -130,12 +128,12 @@ namespace VendingMachineCore
         }
 
         /// <summary>
-        /// Переводит деньги из одного хранилища в другое
+        ///     Transferring money from one vault to another
         /// </summary>
-        /// <param name="Source">Хранилище-источник</param>
-        /// <param name="Destination">Хранилище-назначение</param>
-        /// <param name="Sum">Переводимая сумма</param>
-        /// <returns>истина, если в источнике достаточно монет</returns>
+        /// <param name="Source">Source storage</param>
+        /// <param name="Destination">Destination Storage</param>
+        /// <param name="Sum">Amount to be transferred</param>
+        /// <returns>true if there are enough coins in the source</returns>
         public static bool TransferMoney(CoinAcceptor Source, CoinAcceptor Destination, int Sum)
         {
             var Enough = Source.IsCoinsEnough(Sum);
@@ -145,13 +143,12 @@ namespace VendingMachineCore
         }
 
         /// <summary>
-        /// Возвращает в виде текста содержимое хранилища либо массива MoneyToStringify
+        ///     Returns the contents of the storage or MoneyToStringify array as text
         /// </summary>
         /// <returns></returns>
         public string GetMoneyString()
         {
             return Money.GetMoneyString(Coins.ToArray());
         }
-
     }
 }

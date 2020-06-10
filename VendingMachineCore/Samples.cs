@@ -1,28 +1,31 @@
 ﻿//---------------------------------------------------------------------------//
-//Разработчик: Гаппов Борис, gappov@gmail.com, +79262302992                  //
-//Москва, 26.09.2014                                                         //
+// Developer: Boris Gappov, gappov@gmail.com, +79262302992                   //
+// Moscow, 09/26/2014                                                        //
 //---------------------------------------------------------------------------//
+
 using System.Collections.Generic;
 
 namespace VendingMachineCore
 {
     /// <summary>
-    /// Экспериментальные данные
+    ///     Experimental data
     /// </summary>
     public class Samples
     {
-        static List<ProductType> SampleProductTypes = new List<ProductType> { 
-                        new ProductType { Id = 0, Name = "Чай", Price = 13 },
-                        new ProductType { Id = 1, Name = "Кофе", Price = 18 },
-                        new ProductType { Id = 2, Name = "Кофе с молоком", Price = 21 },
-                        new ProductType { Id = 3, Name = "Сок", Price = 35 }
-                    };
+        private static readonly List<ProductType> SampleProductTypes = new List<ProductType>
+        {
+            new ProductType {Id = 0, Name = "Tee", Price = 13},
+            new ProductType {Id = 1, Name = "Coffee", Price = 18},
+            new ProductType {Id = 2, Name = "Coffee with milk", Price = 21},
+            new ProductType {Id = 3, Name = "The juice", Price = 35}
+        };
 
 
-        # region Как в задании
+        # region As in the assignment
+
         public static VendingMachine CreateSampleVendingMachine1()
         {
-            var SampleMachine = new VendingMachine() { ProductTypes = SampleProductTypes };
+            var SampleMachine = new VendingMachine {ProductTypes = SampleProductTypes};
             SampleMachine.Products.Add(0, 10);
             SampleMachine.Products.Add(1, 20);
             SampleMachine.Products.Add(2, 20);
@@ -43,12 +46,14 @@ namespace VendingMachineCore
             SampleCustomer.Purse.Push(10, 15);
             return SampleCustomer;
         }
+
         #endregion
 
-        # region Небольшое количество денег автомате
+        # region A small amount of money
+
         public static VendingMachine CreateSampleVendingMachine2()
         {
-            var SampleMachine = new VendingMachine() { ProductTypes = SampleProductTypes };
+            var SampleMachine = new VendingMachine {ProductTypes = SampleProductTypes};
             SampleMachine.Products.Add(0, 10);
             SampleMachine.Products.Add(1, 10);
             SampleMachine.Products.Add(2, 10);
@@ -69,12 +74,14 @@ namespace VendingMachineCore
             SampleCustomer.Purse.Push(10, 20);
             return SampleCustomer;
         }
+
         #endregion
 
-        # region Экзотические монеты
+        # region Exotic coins
+
         public static VendingMachine CreateSampleVendingMachine3()
         {
-            var SampleMachine = new VendingMachine() { ProductTypes = SampleProductTypes };
+            var SampleMachine = new VendingMachine {ProductTypes = SampleProductTypes};
             SampleMachine.Products.Add(0, 3);
             SampleMachine.Products.Add(1, 2);
             SampleMachine.Products.Add(2, 4);
@@ -95,7 +102,7 @@ namespace VendingMachineCore
             SampleCustomer.Purse.Push(11, 3);
             return SampleCustomer;
         }
-        #endregion
 
+        #endregion
     }
 }

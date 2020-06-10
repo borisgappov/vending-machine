@@ -1,26 +1,27 @@
 ﻿//---------------------------------------------------------------------------//
-//Разработчик: Гаппов Борис, gappov@gmail.com, +79262302992                  //
-//Москва, 26.09.2014                                                         //
+// Developer: Boris Gappov, gappov@gmail.com, +79262302992                   //
+// Moscow, 09/26/2014                                                        //
 //---------------------------------------------------------------------------//
+
 namespace VendingMachineCore
 {
     /// <summary>
-    /// Тип продукта
+    ///     type of product
     /// </summary>
     public class ProductType
     {
         /// <summary>
-        /// Уникальный идентификатор
+        ///     Unique identificator
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Название продукта
+        ///     The product's name
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Стоимость за штуку
+        ///     Cost per piece
         /// </summary>
         public int Price { get; set; }
     }

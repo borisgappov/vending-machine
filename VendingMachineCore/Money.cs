@@ -1,49 +1,43 @@
 ﻿//---------------------------------------------------------------------------//
-//Разработчик: Гаппов Борис, gappov@gmail.com, +79262302992                  //
-//Москва, 26.09.2014                                                         //
+// Developer: Boris Gappov, gappov@gmail.com, +79262302992                   //
+// Moscow, 09/26/2014                                                        //
 //---------------------------------------------------------------------------//
+
 using System;
 using System.Text;
 
 namespace VendingMachineCore
 {
     /// <summary>
-    /// Деньги (монеты) определенного достоинства
+    ///     Money (coins) of a certain denomination
     /// </summary>
     public class Money
     {
         /// <summary>
-        /// Сумма
+        ///     Sum
         /// </summary>
         public int Amount { get; set; }
 
         /// <summary>
-        /// Достоинство одной монеты, например 10 руб
+        ///     The value of one coin, for example 10
         /// </summary>
         public int CoinValue { get; set; }
 
         /// <summary>
-        /// Количество монет
+        ///     Number of coins
         /// </summary>
-        public int Count
-        {
-            get
-            {
-                return Amount / CoinValue;
-            }
-        }
+        public int Count => Amount / CoinValue;
 
         /// <summary>
-        /// Возвращает в виде текста массив Money
+        ///     Returns an array of Money as text
         /// </summary>
         /// <returns></returns>
-        static public string GetMoneyString(Money[] MoneyToStringify)
+        public static string GetMoneyString(Money[] MoneyToStringify)
         {
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
             foreach (var coin in MoneyToStringify)
-            {
-                builder.Append(String.Format("достоинство: {0}, количество: {1}{2}", coin.CoinValue, coin.Count, Environment.NewLine));
-            }
+                builder.Append(string.Format("value: {0}, count: {1}{2}", coin.CoinValue, coin.Count,
+                    Environment.NewLine));
             return builder.ToString();
         }
     }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="VendingMachine.Default" %>
 <%@ Register assembly="Ext.Net" namespace="Ext.Net" tagprefix="ext" %>
 
 <!DOCTYPE html>
@@ -14,13 +14,13 @@
         function UpdateButtons(data) {
             for (i in data.CustomerButtons) {
                 Ext.getCmp('ButtonPut_' + data.CustomerButtons[i].CoinValue)
-                    .setText(Ext.String.format('{0} x {1}  в автомат >>',
+                    .setText(Ext.String.format('{0} x {1} into machine >>',
                                 data.CustomerButtons[i].CoinValue,
                                 data.CustomerButtons[i].Count));
             }
             for (i in data.MachineButtons) {
                 Ext.getCmp('ButtonBuy_' + data.MachineButtons[i].Id)
-                    .setText(Ext.String.format('купить {0}, в наличии {1} шт, цена {2}',
+                    .setText(Ext.String.format('buy {0}, in stock {1}, price {2}',
                                 data.MachineButtons[i].Name,
                                 data.MachineButtons[i].Count,
                                 data.MachineButtons[i].Price));
@@ -39,13 +39,11 @@
             <Items>
                 <ext:Toolbar runat="server" Height="28" Width="450" Layout="HBoxLayout">
                     <Items>
-                        <ext:Button runat="server" Text="Как в задании" Handler="App.direct.Reset(1)" ></ext:Button>
+                        <ext:Button runat="server" Text="As in the assignment" Handler="App.direct.Reset(1)" ></ext:Button>
                         <ext:ToolbarSeparator />
-                        <ext:Button runat="server" Text="Деньги на исходе" Handler="App.direct.Reset(2)" ></ext:Button>
+                        <ext:Button runat="server" Text="Money is running out" Handler="App.direct.Reset(2)" ></ext:Button>
                         <ext:ToolbarSeparator />
-                        <ext:Button runat="server" Text="Экзотические деньги" Handler="App.direct.Reset(3)" ></ext:Button>
-                        <ext:ToolbarSeparator />
-                        <ext:HyperLink runat="server" Icon="PageWhiteZip" Text="Скачать" NavigateUrl="sources.zip" ></ext:HyperLink>
+                        <ext:Button runat="server" Text="Exotic money" Handler="App.direct.Reset(3)" ></ext:Button>
                     </Items>
                 </ext:Toolbar>
                 <ext:Container runat="server" Layout="HBoxLayout" MarginSpec="5 0 0 0">
@@ -53,34 +51,34 @@
                         <ext:HBoxLayoutConfig Align="Middle" Pack="Center" />
                     </LayoutConfig>
                     <Items>
-                        <ext:Panel runat="server" Title="Покупатель" Height="350" Width="150" BodyPadding="5">
+                        <ext:Panel runat="server" Title="Buyer" Height="350" Width="150" BodyPadding="5">
                             <Items>
-                                <ext:Panel runat="server" ID="PanelPurse" Title="Кошелек" Height="140" Layout="VBoxLayout" BodyPaddingSummary="0 0 5 0">
+                                <ext:Panel runat="server" ID="PanelPurse" Title="Purse" Height="140" Layout="VBoxLayout" BodyPaddingSummary="0 0 5 0">
                                     <LayoutConfig>
                                         <ext:VBoxLayoutConfig Align="Stretch" DefaultMargins="5 5 0 5"  />
                                     </LayoutConfig>
                                 </ext:Panel>
                             </Items>
                         </ext:Panel>
-                        <ext:Panel runat="server" Title="Торговый автомат" Height="350" Width="295" MarginSpec="0 0 0 5" Layout="VBoxLayout" BodyPadding="5">
+                        <ext:Panel runat="server" Title="Vending machine" Height="350" Width="295" MarginSpec="0 0 0 5" Layout="VBoxLayout" BodyPadding="5">
                             <LayoutConfig>
                                 <ext:VBoxLayoutConfig Align="Stretch" />
                             </LayoutConfig>
                             <Items>
-                                <ext:Panel runat="server" Title="Баланс" Height="60" Layout="HBoxLayout" BodyPadding="5">
+                                <ext:Panel runat="server" Title="Balance" Height="60" Layout="HBoxLayout" BodyPadding="5">
                                     <LayoutConfig>
                                         <ext:HBoxLayoutConfig Align="Stretch" />
                                     </LayoutConfig>
                                     <Items>
                                         <ext:Container runat="server" ID="BalanceContainer" Flex="1"></ext:Container>
-                                        <ext:Button runat="server" Text="Забрать сдачу" Width="100" ToolTip="Забрать сдачу">
+                                        <ext:Button runat="server" Text="Pick up change" Width="100" ToolTip="Pick up change">
                                             <DirectEvents>
                                                 <Click OnEvent="GetRemain" />
                                             </DirectEvents>
                                         </ext:Button>
                                     </Items>
                                 </ext:Panel>
-                                <ext:Panel runat="server" ID="PanelProducts" Title="Продукты" Height="150" Layout="VBoxLayout" MarginSpec="5 0 0 0" BodyPaddingSummary="0 0 5 0">
+                                <ext:Panel runat="server" ID="PanelProducts" Title="Products" Height="150" Layout="VBoxLayout" MarginSpec="5 0 0 0" BodyPaddingSummary="0 0 5 0">
                                     <LayoutConfig>
                                         <ext:VBoxLayoutConfig Align="Stretch" DefaultMargins="5 5 0 5" />
                                     </LayoutConfig>
@@ -91,7 +89,7 @@
                         </ext:Panel>
                     </Items>
                 </ext:Container>
-                <ext:Panel runat="server" Width="450" Title="Лог операций" Height="200" Layout="FitLayout" MarginSpec="5 0 0 0">
+                <ext:Panel runat="server" Width="450" Title="Operations log" Height="200" Layout="FitLayout" MarginSpec="5 0 0 0">
                     <Items>
                         <ext:TextArea runat="server" ID="LogTextArea" StyleSpec="border:none;" Border="false" MarginSpec="-1 0 0 -1" ReadOnly="true" />
                     </Items>
